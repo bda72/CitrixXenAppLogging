@@ -19,6 +19,7 @@ When I had to repeat this task on an additional XenApp farm, I decided to look f
 These are the properties I capture in my script with an example of the results:
 
 "Application","SessionId","User","LogOnTime","ClientName","State"
+
 "Internet Explorer","5","JSmith","3/15/2021 11:39:48 AM","PC-125","Active"
 
 In the example session, all six of those properties will remain the same during each query, until the session ends. At each run, we will have this JSmith session logged and then the script will load the results CSV, look for duplicates and remove the second instance of the JSmith session. If JSmith logs out and launches a new session, the LogOnTime and likely SessionId properties will be different, indicating it is a new unique session.
