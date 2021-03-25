@@ -18,6 +18,7 @@ Written by Brian D. Arnold
 Change Log:
 2018-08-30 Initial version
 2021-03-15 Cleanup formatting and comments
+2021-03-24 Added alternative commands for CVAD
 #>
 
 ###############
@@ -53,12 +54,18 @@ $Outfile3 = "\\SERVER\SHARE\Counts\XenApp Session Counts $prefix.csv"
 ################
 
 #Get active sessions and export to CSV
-# Daily
+# Daily XenApp
 Get-XASession | WHERE {$_.State -eq "Active"} | Select @{Name="Application";Expression={$_.BrowserName}},SessionId,@{Name="User";Expression={$_.AccountName}},LogOnTime,ClientName,State | Export-Csv $Outfile1 -NoTypeInformation -Append
-# Weekly
+# Daily CVAD
+# Get-BrokerSession -MaxRecordCount 20000 | WHERE {$_.SessionState -eq "Active" -and $_.SessionType -eq "Application"} | Select @{Name="Application";Expression={$_.LaunchedViaPublishedName}},SessionKey,UserName,StartTime,ClientName,SessionState | Export-Csv $Outfile1 -NoTypeInformation -Append
+# Weekly XenApp
 Get-XASession | WHERE {$_.State -eq "Active"} | Select @{Name="Application";Expression={$_.BrowserName}},SessionId,@{Name="User";Expression={$_.AccountName}},LogOnTime,ClientName,State | Export-Csv $Outfile2 -NoTypeInformation -Append
-# Counts
+# Weekly CVAD
+# Get-BrokerSession -MaxRecordCount 20000 | WHERE {$_.SessionState -eq "Active" -and $_.SessionType -eq "Application"} | Select @{Name="Application";Expression={$_.LaunchedViaPublishedName}},SessionKey,UserName,StartTime,ClientName,SessionState | Export-Csv $Outfile2 -NoTypeInformation -Append
+# Counts XenApp
 $count = (Get-XASession | WHERE {$_.State -eq "Active"}).count
+# Counts CVAD
+# $count = (Get-BrokerSession -MaxRecordCount 20000 | WHERE {$_.SessionState -eq "Active" -and $_.SessionType -eq "Application"}).count
 $summary = New-Object psobject
 $summary | Add-Member -MemberType NoteProperty -name Users -Value $count
 $summary | Add-Member -MemberType NoteProperty -name Date-Time -Value $datetime
