@@ -12,7 +12,7 @@ When migrating a legacy Citrix XenApp farm to CVAD, you need to know who is runn
 
 Years ago, I spent a lot of time investigating potential ways to log that info and mostly came up empty. I eventually created a process that captured that info by capturing and logging ASP user agent info from Web Interface, combining files from all WI servers into a single file, writing it to a SQL DB and then creating and emailing scheduled weekly Excel reports. I documented the process and threw it on TechNet Script Gallery (RIP). It worked surprisingly well for years with little-to-no intervention but, to be honest, it was a ton of work to setup and involved modifying Web Interface files which always makes me nervous.
 
-When I had to repeat this task on an additional XenApp farm, I decided to look for an easier way. I had considered logging current sessions during my initial investigation but didn't think out the details at the time. There are several ways to list all current XenApp sessions, but I found PowerShell to be the cleanest. The key step that makes this process work is eliminating duplicates records.
+When I had to repeat this task on an additional XenApp farm, I decided to look for an easier way. I had considered logging current sessions during my initial investigation but didn't think out the details at the time. There are several ways to list all current XenApp sessions, but I found PowerShell to be the cleanest. The key step that makes this process work is eliminating duplicate records.
 
 # How It Works
 
