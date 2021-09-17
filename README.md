@@ -8,7 +8,7 @@ Download the .ps1 file and place it in a folder. Modify the GLOBALS section to r
 
 # Background
 
-When migrating a legacy Citrix XenApp farm to CVAD, you need to know who is running each published app and how often. What apps can be eliminated? What are your most and least used apps? When are your heaviest and lightest usage times? Depending on your XenApp license, you are likely not allowed to log that data. And I mean it is literally not logged at all. There is no secret DB you can manually query.
+When migrating a legacy Citrix XenApp farm to CVAD, you need to know who is running each published app and how often. What apps can be eliminated? What are your most and least used apps? When are your heaviest and lightest usage times? Depending on your XenApp license, you are may not be allowed to log that data. And I mean it is literally not logged at all. There is no secret DB you can manually query.
 
 Years ago, I spent a lot of time investigating potential ways to log that info and mostly came up empty. I eventually created a process that captured that info by capturing and logging ASP user agent info from Web Interface, combining files from all WI servers into a single file, writing it to a SQL DB and then creating and emailing scheduled weekly Excel reports. I documented the process and threw it on TechNet Script Gallery (RIP). It worked surprisingly well for years with little-to-no intervention but, to be honest, it was a ton of work to setup and involved modifying Web Interface files which always makes me nervous.
 
